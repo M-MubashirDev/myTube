@@ -1,9 +1,11 @@
-export default function Home() {
+import { trpc } from "@/trpc/server";
+import ClientNew from "./clientNew";
+
+export default async function Home() {
+  void trpc.hello.prefetch({ text: "mubashir" });
   return (
     <div>
-      <p className="text-xl font-semibold tracking-tight">
-        I will load videos in the future{" "}
-      </p>
+      <ClientNew />
     </div>
   );
 }
