@@ -1,12 +1,12 @@
+import HomeView from "@/modules/home/ui/views/HomeView";
 import { trpc } from "@/trpc/server";
-import ClientNew from "./clientNew";
-
+import { HydrateClient } from "@/trpc/server";
+export const dynamic = "force-dynamic";
 export default async function Home() {
-  void trpc.hello.prefetch({ text: "mubashir" });
+  void trpc.categories.getMany.prefetch();
   return (
-    <div>
-      <ClientNew />
-      <div>Home Page</div>
-    </div>
+    <HydrateClient>
+      <HomeView />
+    </HydrateClient>
   );
 }
